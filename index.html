@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пчелинчето на Филип — мед право от кошера</title>
+<meta name="description" content="Суров, нефилтриран мед от малко домашно пчелинче. Поръчка по имейл, плащане през Lightning Network.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #1B140A;
+    --bg-panel:  #241B0F;
+    --bg-card:   #2C2013;
+    --gold:      #E3A521;
+    --gold-dim:  #9C7523;
+    --cream:     #F2E8D5;
+    --tan:       #C7B896;
+    --line:      #4A3A22;
+    --max: 720px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'PT Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  h1,h2,h3{
+    font-family: 'PT Serif', serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 .5em;
+  }
+  a{ color: var(--gold); }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    padding: 96px 0 72px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='72.7' viewBox='0 0 84 72.7'%3E%3Cpolygon points='21,0 63,0 84,36.35 63,72.7 21,72.7 0,36.35' fill='none' stroke='%23E3A521' stroke-opacity='0.10' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 84px 72.7px;
+    opacity: .55;
+    mask-image: linear-gradient(to bottom, black, transparent);
+  }
+  .hero-inner{ position: relative; }
+  .kicker{
+    font-size: 15px;
+    color: var(--tan);
+    margin-bottom: 18px;
+  }
+  .hero h1{
+    font-size: clamp(34px, 6vw, 46px);
+    color: var(--cream);
+    max-width: 15ch;
+    animation: rise .7s ease-out both;
+  }
+  .hero p.lead{
+    font-size: 18px;
+    color: var(--tan);
+    max-width: 42ch;
+    margin: 18px 0 32px;
+    animation: rise .7s .08s ease-out both;
+  }
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(10px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero h1, .hero p.lead{ animation: none; }
+  }
+
+  .btn{
+    display:inline-block;
+    background: var(--gold);
+    color: #1B140A;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 13px 26px;
+    border-radius: 3px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .btn:hover{ background: #f0b23a; }
+  .btn-ghost{
+    display:inline-block;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 13px 22px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    font-size: 16px;
+    margin-left: 12px;
+  }
+  .btn-ghost:hover{ border-color: var(--gold-dim); }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 64px 0; }
+  section + section{ border-top: 1px solid var(--line); }
+
+  .story p{ color: var(--tan); max-width: 62ch; }
+  .story p + p{ margin-top: 1.1em; }
+  .signature{
+    margin-top: 28px;
+    font-family: 'PT Serif', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 20px;
+  }
+
+  /* ---------- PHOTOS ---------- */
+  .gallery{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .photo-slot{
+    aspect-ratio: 4/3;
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    background: var(--bg-panel);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    color: var(--tan);
+    text-align:center;
+    padding: 10px;
+  }
+  .photo-slot svg{ width: 34px; height: 34px; stroke: var(--gold-dim); }
+  .photo-slot span.cap{ font-size: 13px; }
+  .photo-slot span.hint{ font-size: 11px; color: var(--gold-dim); }
+  @media (max-width: 520px){
+    .gallery{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- PRODUCT ---------- */
+  .product-card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 32px;
+    margin-top: 24px;
+  }
+  .price-row{
+    display:flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .price-eur{
+    font-family: 'PT Serif', serif;
+    font-size: 44px;
+    color: var(--cream);
+  }
+  .price-sats{
+    color: var(--gold);
+    font-size: 16px;
+  }
+  .price-note{
+    color: var(--gold-dim);
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .jar-desc{ color: var(--tan); margin-top: 18px; max-width: 46ch; }
+
+  .ln-box{
+    margin-top: 26px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 16px;
+    flex-wrap: wrap;
+  }
+  .ln-box .label{ font-size: 12px; color: var(--tan); display:block; margin-bottom: 4px; }
+  .ln-box code{
+    font-family: 'PT Sans', sans-serif;
+    font-size: 15px;
+    color: var(--cream);
+    word-break: break-all;
+  }
+  .copy-btn{
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-family: 'PT Sans', sans-serif;
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor:pointer;
+    white-space: nowrap;
+  }
+  .copy-btn:hover{ border-color: var(--gold); }
+
+  /* ---------- STEPS ---------- */
+  ol.steps{
+    list-style: none;
+    counter-reset: step;
+    margin: 28px 0 0;
+    padding: 0;
+  }
+  ol.steps li{
+    counter-increment: step;
+    display:flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+  }
+  ol.steps li:first-child{ border-top: none; }
+  ol.steps li::before{
+    content: counter(step);
+    flex: 0 0 auto;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family: 'PT Serif', serif;
+    font-size: 14px;
+  }
+  ol.steps li p{ margin:0; color: var(--tan); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    margin-top: 24px;
+    display:flex;
+    flex-wrap: wrap;
+    align-items:center;
+    gap: 18px;
+  }
+  .contact-email{ color: var(--tan); font-size: 15px; }
+
+  footer{
+    padding: 40px 0 60px;
+    color: var(--gold-dim);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <p class="kicker">Малко пчелинче · директно от производителя</p>
+    <h1>Мед право от кошера, не от рафта</h1>
+    <p class="lead">Малки количества суров, нефилтриран мед — вадя го на ръка и го пращам директно на теб. Плащане чрез Lightning, в сатоши.</p>
+    <a href="#продукт" class="btn">Виж бурканчето</a>
+    <a href="#история" class="btn-ghost">Прочети историята</a>
+  </div>
+</header>
+
+<section id="история">
+  <div class="wrap story">
+    <h2>Историята</h2>
+    <p>Пчелинчето ми е малко — само няколко кошера, но точно затова мога да се грижа за всеки един поотделно. Гледам ги през цялата година и вадя мед само когато наистина има излишък, без да гоня количество.</p>
+    <p>Резултатът е суров мед, точно както го оставят пчелите — без нагряване, без смесване с друг мед, без бързане. Точа го на малки партиди и го разливам по бурканчета от 720 мл, готови за изпращане.</p>
+    <p>Всяко бурканче тръгва направо от мен към теб, затова и плащането минава директно — чрез Lightning мрежата, без банки и посредници по средата.</p>
+    <p class="signature">— Филип</p>
+  </div>
+</section>
+
+<section id="снимки">
+  <div class="wrap">
+    <h2>Няколко кадъра от пчелина</h2>
+    <div class="gallery">
+      <!-- Замени всеки div.photo-slot с <img src="снимка1.jpg" alt="Кошерите"> когато имаш готови снимки -->
+      <div class="photo-slot">
+        <img src="20260603_100955.jpg" alt="Кошерите">
+        <span class="cap">Кошерите</span>
+      </div>
+      <div class="photo-slot">
+        <img src="20260716_192918_1789126114671.jpg" alt="Кошерите">
+        <span class="cap">Кошерите</span>
+      </div>
+      </div>
+      <div class="photo-slot">
+        <img src="IMG-872681db91c4e341691e59048ddc0f3b-V.jpg" alt="Готовите бурканчета">
+        <span class="cap">Готовите бурканчета</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="продукт">
+  <div class="wrap">
+    <h2>Бурканче мед, 720 мл</h2>
+    <div class="product-card">
+      <div class="price-row">
+        <span class="price-eur">10 €</span>
+        <span class="price-sats" id="satsPrice">≈ 14 750 сатоши</span>
+      </div>
+      <p class="price-note">Цената в сатоши се обновява автоматично по текущия курс на BTC/EUR — платимата сума потвърждаваме заедно преди плащане.</p>
+      <p class="jar-desc">Суров, нефилтриран мед от домашното ми пчелинче. Точен и разлят на ръка, без добавки.</p>
+
+      <div class="ln-box">
+        <div>
+          <span class="label">Lightning адрес за плащане</span>
+          <code id="lnAddress">filipv@breez.tips</code>
+        </div>
+        <button class="copy-btn" onclick="copyLN()" id="copyBtn">Копирай</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="поръчка">
+  <div class="wrap">
+    <h2>Как да поръчаш</h2>
+    <ol class="steps">
+      <li><p>Пишеш ми на имейл с колко бурканчета искаш.</p></li>
+      <li><p>Отговарям ти с точната сума в сатоши по текущия курс и потвърждаваме детайлите по доставката.</p></li>
+      <li><p>Плащаш през Lightning на адреса по-горе и ми пращаш адрес за доставка.</p></li>
+      <li><p>Пращам бурканчето по Спиди или Еконт в рамките на няколко дни.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="контакт">
+  <div class="wrap">
+    <h2>Свържи се с мен</h2>
+    <div class="contact-box">
+      <a href="#" id="orderMail" class="btn">Пиши ми</a>
+      <span class="contact-email">Felisv@gmail.com</span>
+    <h3>или сканирай за Viber</h3> <img src="Screenshot_20260911_144224_Viber.jpg">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Мед, събран и точен на ръка. Без добавки, без бързане.<br>
+    © <span id="year"></span> · Пчелинчето на Филип
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Prefilled mailto link
+  var subject = encodeURIComponent('Поръчка за мед');
+  var body = encodeURIComponent('Здравей,\n\nБих искал/а да поръчам ___ бурканчета мед (720 мл).\n\nИме:\nАдрес за доставка:\n');
+  document.getElementById('orderMail').href = 'mailto:Felisv@gmail.com?subject=' + subject + '&body=' + body;
+
+  // Copy Lightning address
+  function copyLN(){
+    var text = document.getElementById('lnAddress').textContent;
+    navigator.clipboard.writeText(text).then(function(){
+      var btn = document.getElementById('copyBtn');
+      var original = btn.textContent;
+      btn.textContent = 'Копирано!';
+      setTimeout(function(){ btn.textContent = original; }, 1800);
+    });
+  }
+
+  // Live BTC/EUR rate -> sats for 10 EUR (falls back to static estimate if offline)
+  (function(){
+    var EUR_PRICE = 10;
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var btcEur = data.bitcoin.eur;
+        var sats = Math.round((EUR_PRICE / btcEur) * 100000000);
+        document.getElementById('satsPrice').textContent =
+          '≈ ' + sats.toLocaleString('bg-BG') + ' сатоши';
+      })
+      .catch(function(){ /* keep static fallback already in the HTML */ });
+  })();
+</script>
+
+</body>
+</html>
