@@ -380,7 +380,7 @@
 
   // Live BTC/EUR rate -> sats for 10 EUR (falls back to static estimate if offline)
   (function(){
-    var EUR_PRICE = 10;
+    var EUR_PRICE = 8;
     fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur')
       .then(function(r){ return r.json(); })
       .then(function(data){
